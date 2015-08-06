@@ -4,11 +4,12 @@ import java.util.ArrayList;
 
 public class Input {
     private ArrayList nonTaxableItems;
-    public void generateInput() {
+    public Input() {
         nonTaxableItems = new ArrayList();
         nonTaxableItems.add("book");
         nonTaxableItems.add("chocolate");
         nonTaxableItems.add("pills");
+
     }
 
     public ArrayList getNonTaxableItems() {

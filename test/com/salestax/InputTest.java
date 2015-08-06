@@ -9,7 +9,6 @@ public class InputTest {
     @Test
     public void shouldCheckThatTheGoodsIsFoodOrMedicalorBooks() {
         Input input = new Input();
-        input.generateInput();
 
         assertFalse(input.isTaxable("1 book at 12.49"));
     }

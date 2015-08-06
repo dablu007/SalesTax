@@ -23,8 +23,9 @@ public class SalesTax {
         for (int i = 0; i < inputList.size(); i++) {
             String goods = inputList.get(i);
             String[] input = goods.split(" ");
+            int index = input.length;
             double tax = 0;
-            double price = Double.parseDouble(input[6]);
+            double price = Double.parseDouble(input[index-1]);
             StringBuffer result = new StringBuffer();
             for (int j = 0; j < input.length - 2; j++) {
                 if (j == 0)
@@ -41,8 +42,14 @@ public class SalesTax {
             if (goods.contains("imported") && !(inputTaxChecker.isTaxable(goods))) {
                 tax += price * 0.05;
             }
-            else{
+            else if ( (goods.contains("imported")) && inputTaxChecker.isTaxable(goods)){
                 tax += price * 0.15;
+            }
+            else if (inputTaxChecker.isTaxable(goods)){
+                tax += price * 0.10;
+            }
+            else {
+                tax += 0.0;
             }
             totalTax += tax;
             String finalPrice = roundOffTo2DecPlaces((float) (tax + price));
