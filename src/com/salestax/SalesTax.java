@@ -8,10 +8,11 @@ public class SalesTax {
     private ArrayList<String> outputList;
     private double totalTax = 0;
     private double totalPrice = 0;
-
+    private Input inputTaxChecker;
     public SalesTax(ArrayList inputList) {
         this.inputList = inputList;
         this.outputList = new ArrayList<>();
+        inputTaxChecker = new Input();
     }
 
     public ArrayList<String> getOutputList() {
@@ -37,8 +38,11 @@ public class SalesTax {
             for (int j = 0; j < input.length -1; j++){
                 output +=  input[j] + " ";
             }
-            if (goods.contains("imported")) {
+            if (goods.contains("imported") && !(inputTaxChecker.isTaxable(goods))) {
                 tax += price * 0.05;
+            }
+            else{
+                tax += price * 0.15;
             }
             totalTax += tax;
             String finalPrice = roundOffTo2DecPlaces((float) (tax + price));
