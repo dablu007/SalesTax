@@ -82,4 +82,28 @@ public class SalesTaxTest {
         salesTax.calculateTax();
         assertEquals(outputList, salesTax.getOutputList());
     }
+
+    @Test
+    public void shouldCalculateTaxWithoutHavingImportedItemsAndOther() {
+        ArrayList inputList = new ArrayList();
+        String input1 = "1 imported bottle of perfume at 27.99";
+        String input2 = "1 bottle of perfume at 18.99";
+        String input3 = "1 packet of headache pills at 9.75";
+        String input4 = "1 box of imported chocolates at 11.25";
+        inputList.add(input1);
+        inputList.add(input2);
+        inputList.add(input3);
+        inputList.add(input4);
+        SalesTax salesTax = new SalesTax(inputList);
+        ArrayList outputList = new ArrayList();
+        outputList.add("1 imported bottle of perfume: 32.19");
+        outputList.add("1 bottle of perfume: 20.89");
+        outputList.add("1 packet of headache pills: 9.75");
+        outputList.add("1 box of imported chocolates: 11.81");
+        outputList.add("Sales Taxes: 6.66");
+        outputList.add("Total: 74.64");
+
+        salesTax.calculateTax();
+        assertEquals(outputList, salesTax.getOutputList());
+    }
 }
